@@ -65,7 +65,7 @@ const Invoices = () => {
                   <div className="  flex justify-center items-center gap-4 ">
                     <p className="text-2xl font-bold">$</p>
 
-                    <div className="bg-[#1F2C3F] px-5 py-3 flex justify-center items-center gap-3 rounded-md ">
+                    <div className="bg-[#33d6a041] px-5 py-3 flex justify-center items-center gap-3 rounded-md ">
                       <div className=" bg-green-500 h-4 w-4 rounded-full " />
                       <p
                         className={
