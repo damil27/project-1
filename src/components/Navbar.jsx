@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../assets/logo.png";
 import avatar from "../assets/image-avatar.jpg";
 import sun from "../assets/icon-sun.svg";
+import moon from "../assets/icon-moon.svg";
+import { ThemeContext } from "./context/ThemeContext";
 
 const Navbar = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <div>
       {/* desktop view  */}
@@ -14,9 +17,13 @@ const Navbar = () => {
           </div>
 
           <div className="absolute bottom-3 flex flex-col justify-center items-center  ">
-            <div className="mb-4">
-              <img src={sun} alt="" />
-            </div>
+            <button onClick={toggleTheme} className="mb-4">
+              {theme === "dark" ? (
+                <img src={sun} alt="" />
+              ) : (
+                <img src={moon} alt="" />
+              )}
+            </button>
             <div className="h-[2px] w-full bg-slate-400  mb-4 " />
 
             <div>
@@ -33,9 +40,13 @@ const Navbar = () => {
             <img src={logo} alt="" className="h-[80px]" />
           </div>
           <div className=" flex justify-center items-center gap-3 h-[80px] mr-4">
-            <div>
-              <img src={sun} alt="" />
-            </div>
+            <button onClick={toggleTheme} className="mb-4">
+              {theme === "dark" ? (
+                <img src={sun} alt="" />
+              ) : (
+                <img src={moon} alt="" />
+              )}
+            </button>
             <div className="h-[80px] w-[2px] bg-slate-300" />
             <div>
               <img
