@@ -5,12 +5,11 @@ import arrowRight from "../assets/icon-arrow-right.svg";
 import { dataInvoice } from "./Data";
 import { ThemeContext } from "./context/ThemeContext";
 import { Link } from "react-router-dom";
+import AddNew from "./AddNew";
 const Invoices = () => {
-  console.log(dataInvoice);
-
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme, values } = useContext(ThemeContext);
   console.log(theme);
-  const [values, setValue] = useState(dataInvoice);
+
   return (
     <div className=" text-white container mx-auto  md:w-[60%] ">
       <div className="pt-[4rem]" />
@@ -87,6 +86,7 @@ const Invoices = () => {
           ))}
         </div>
       </main>
+      <AddNew />
     </div>
   );
 };
