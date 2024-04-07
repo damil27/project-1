@@ -6,9 +6,11 @@ import { dataInvoice } from "./Data";
 import { ThemeContext } from "./context/ThemeContext";
 import { Link } from "react-router-dom";
 import AddNew from "./AddNew";
+
 const Invoices = () => {
   const { theme, toggleTheme, values } = useContext(ThemeContext);
-  console.log(theme);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className=" text-white container mx-auto  md:w-[60%] ">
@@ -34,7 +36,10 @@ const Invoices = () => {
                 <img src={dropdown} alt="" />
               </div>
             </div>
-            <div className="flex justify-center items-center gap-2 bg-[#7C5DFA] px-3 py-2 rounded-3xl">
+            <div
+              onClick={() => setIsOpen(true)}
+              className=" cursor-pointer flex justify-center items-center gap-2 bg-[#7C5DFA] px-3 py-2 rounded-3xl"
+            >
               <div className=" h-[40px] w-[40px] bg-white flex justify-center p-1 rounded-full ">
                 <img src={plus} alt="" className="p-[0.35rem]" />
               </div>
@@ -55,14 +60,28 @@ const Invoices = () => {
               <Link to={`/${value.id}`}>
                 <article className="flex justify-between items-center ">
                   {/* first major div here  */}
-                  <div className="flex justify-center items-center gap-4 ">
-                    <p className="text-text-access"># {value.id}</p>
+                  <div className="flex flex-col md:flex-row items-start  md:justify-center md:items-center md:gap-4 ">
+                    <p className="text-text-access hidden md:block">
+                      # {value.id}
+                    </p>
                     <p className="text-text-access">Due {value.paymentDue}</p>
-                    <p className="text-main-text"> {value.clientEmail}</p>
+                    <p className="text-text-access  md:hidden">
+                      $
+                    </p>
+                    <p className="text-main-text hidden md:block">
+                      {" "}
+                      {value.clientName}
+                    </p>
                   </div>
                   {/* ssecond major div here  */}
-                  <div className="  flex justify-center items-center gap-4 ">
-                    <p className="text-2xl font-bold">$</p>
+                  <div className="  flex flex-col  items-end md:flex-row justify-center md:items-center md:gap-4 ">
+                    <p className="text-2xl hidden md:inline-block font-bold">
+                      $
+                    </p>
+                    <p className="text-main-text   md:hidden">
+                      {" "}
+                      {value.clientName}
+                    </p>
 
                     <div className="bg-[#33d6a041] px-5 py-3 flex justify-center items-center gap-3 rounded-md ">
                       <div className=" bg-green-500 h-4 w-4 rounded-full " />
@@ -86,7 +105,7 @@ const Invoices = () => {
           ))}
         </div>
       </main>
-      <AddNew />
+      {isOpen && <AddNew setIsOpen={setIsOpen} />}
     </div>
   );
 };
